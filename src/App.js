@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import Current from './components/Current'
+import Forecast from './components/Forecast'
+import { useState } from 'react'
+import { useEffect } from 'react'
+
 
 function App() {
+
+  const [city, setCity] = useState('paris')
+
+  const [data, setData] = useState('')
+
+  const fetchData = () => {
+    fetch(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${city}&days=3`, {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-key": "3927819375mshd44cfb360819a63p12aeabjsn863dc422f8df",
+        "x-rapidapi-host": "weatherapi-com.p.rapidapi.com"
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        setData(res)
+      })
+  }
+  
+  useEffect(() => {
+    fetchData();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <div>
+        <input type='text' value={city}
+          onChange = {e => setCity(e.target.value)} />
+        <button onClick={fetchData}>Search</button>
+      </div>      
+      {data && <Current data={data}/>}
+      <Forecast />
     </div>
   );
 }
