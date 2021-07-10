@@ -4,7 +4,7 @@ const Current = ({ data }) => {
     return (
         <div className='current'>
             <div className='location'>
-                <h3>{data.location.name}, {data.location.country}</h3>
+                <h3>{data.location.name}, {data.location.region}, {data.location.country}</h3>
                 <p>{data.location.localtime}</p>
             </div>
             <div className='current-temp'>
