@@ -1,11 +1,13 @@
 import React from 'react'
 
 const Current = ({ data }) => {
+    const d = new Date(data.location.localtime)
+    // console.log(d)
     return (
         <div className='current'>
             <div className='location'>
                 <h3>{data.location.name}, {data.location.region}, {data.location.country}</h3>
-                <p>{data.location.localtime}</p>
+                <p>{d.toDateString()}<br/>{d.toLocaleTimeString()}</p>
             </div>
             <div className='current-temp'>
                 <div className='icon' style={{backgroundImage : "url(" + data.current.condition.icon + ")" }} />
