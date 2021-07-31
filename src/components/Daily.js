@@ -1,8 +1,7 @@
 import React from 'react'
-import { FaTint,FaAngleUp,FaAngleDown,FaCaretUp,FaCaretDown } from 'react-icons/fa'
+import { FaTint } from 'react-icons/fa'
 
-const NextDays = ({ data }) => {
-    console.log(data)
+const Daily = ({ data,tempUnit }) => {
     const next = data.forecast.forecastday.slice(1)
     next.push(data.forecast.forecastday[1])
     next.push(data.forecast.forecastday[0])
@@ -14,21 +13,24 @@ const NextDays = ({ data }) => {
     const days = dayNames.slice(today + 1, today + 6)
 
     return (
-        <div>
-            <h2>next days</h2>
-            <div className='next-days'>
+        <div className='daily-container'>
+            <h2>Daily</h2>
+            <div className='daily'>
                 {next.map((n, i) =>
                     <div key={i}>
-                        <div>{days[i]}</div>
-                        <div>
+                        <div className='left'>
                             <img alt='condition' src={n.day.condition.icon} />
                         </div>
-                        <div style={{ visibility: n.day['daily_chance_of_rain']>10  ? 'visible': 'hidden'}}>
-                        <FaTint />{n.day['daily_chance_of_rain']}% 
+                        <div>
+                            <div >{days[i]}</div>
+                            <div className='condition'>{n.day.condition.text}</div>
+                        </div>
+                        <div style={{ visibility: n.day['daily_chance_of_rain'] > 0 ? 'visible' : 'hidden' }}>
+                            <FaTint className='rain' />{n.day['daily_chance_of_rain']}%
                         </div>
                         <div>
-                            <span><FaCaretUp />{Math.round(n.day['maxtemp_c'])}</span>
-                            <span><FaCaretDown />{Math.round(n.day['mintemp_c'])}</span>
+                            <span className='transparent'>{Math.round(n.day[`mintemp_${tempUnit}`])}°</span>/
+                            {Math.round(n.day[`maxtemp_${tempUnit}`])}°
                         </div>
 
                     </div>
@@ -38,4 +40,4 @@ const NextDays = ({ data }) => {
     )
 }
 
-export default NextDays
+export default Daily

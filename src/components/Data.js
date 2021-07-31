@@ -1,14 +1,17 @@
 import React from 'react'
-import Current from './Current'
-import Forecast from './Forecast'
-import NextDays from './NextDays'
+import Hourly from './Hourly'
+import Daily from './Daily'
+import Conditions from './Conditions'
 
-const Data = ({ data }) => {
+const Data = ({ data,tempUnit }) => {
     return (
-        <div>
-            <Current data={data} />
-            <Forecast data={data} />
-            <NextDays data={data} />
+        <div className='data'>
+            <Hourly data={data} tempUnit={tempUnit} />
+            <div className='flex-wrapper'>
+                <Daily data={data} tempUnit={tempUnit} />
+                <Conditions data={data} tempUnit={tempUnit} />
+            </div>
+
         </div>
     )
 }
