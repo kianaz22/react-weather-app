@@ -1,9 +1,9 @@
 import React from 'react'
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa'
-
+import moment from 'moment'
 const Current = ({ data,tempUnit }) => {
     const today = data.forecast.forecastday[0]
-    const d = new Date(data.location.localtime)
+    const m = moment(data.location.localtime, 'YYYY-MM-DD HH:mm').format('dddd, MMM DD, YYYY')
 
     return (
         <div className='current'>
@@ -17,7 +17,7 @@ const Current = ({ data,tempUnit }) => {
                 </div>
             </div>
             <div className='condition'>{data.current.condition.text}</div>
-            <div>{d.toDateString().split(' ').join(', ')}</div>
+            <div>{m}</div>
             <div>
                 <span><FaCaretUp /> {Math.round(today.day[`maxtemp_${tempUnit}`])}°</span>&nbsp;&nbsp;&nbsp;
                 <span><FaCaretDown /> {Math.round(today.day[`mintemp_${tempUnit}`])}°</span>
@@ -29,3 +29,4 @@ const Current = ({ data,tempUnit }) => {
 }
 
 export default Current
+// .toDateString().split(' ').join(', ')
