@@ -29,7 +29,7 @@ const Daily = ({ data, tempUnit }) => {
                             <FaTint className='rain' />{n.day['daily_chance_of_rain']}%
                         </div>
                         <div>
-                            <span className='transparent'>{Math.round(n.day[`mintemp_${tempUnit}`])}°</span>/
+                            <span className='transparent'>{Math.round(n.day[`mintemp_${tempUnit}`])}°</span>&nbsp;
                             {Math.round(n.day[`maxtemp_${tempUnit}`])}°
                         </div>
                     </div>

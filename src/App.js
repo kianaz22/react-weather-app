@@ -8,6 +8,7 @@ function App() {
   const [data, setData] = useState('')
   const [matches, setMatches] = useState([])
   const [tempUnit, setTempUnit] = useState('c')
+
   useEffect(() => {
     const noPosition = () => {
       fetchData('tehran')
@@ -27,7 +28,6 @@ function App() {
     }
   }, [])
 
-  
   const fetchData = (city) => {
     fetch(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${city}&days=3`, {
       "method": "GET",
@@ -88,6 +88,7 @@ function App() {
       setMatches([])
     }, 200);
   }
+  
   if (data)
     return (
       <div className='app' onClick={(e)=>console.log(e)}>

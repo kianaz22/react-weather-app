@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { FaSearch,FaTimes } from 'react-icons/fa'
 const Search = ({ city,handleChange,matches,handleClick,handleBlur,data }) => {
-    const [clas, setClas] = useState('zero')
+    const [clas, setClas] = useState('no-border')
    
     return (
         <div className='search-container' >
-            <button className='search-button' onClick={() => {clas==='full' ? setClas('zero') : setClas('full')}} >
+            <button className='search-button' onClick={() => {clas==='border' ? setClas('no-border') : setClas('border')}} >
                 <FaSearch className='icon' size={15} />
             </button>
             <div className='search' >

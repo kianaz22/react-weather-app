@@ -69,7 +69,16 @@ header {
     }
   }
 }
+@media screen and (min-width: 700px) {
+  header {
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+    .temp-unit{
+      font-size: 1.4em;
+    }
+  }
 
+}
 /* search */
 .search-container {
   width: 100%;
@@ -100,10 +109,10 @@ header {
       color: white;
       font-size: 1em;
       transition: border 0.5s ease-in;
-      padding: 0.2em 1.5em .2em .3em;
+      padding: 0.2em 1.5em 0.2em 0.3em;
       border: 1px solid transparent;
     }
-    
+
     input:focus {
       outline: none;
       border: 1px solid white;
@@ -112,22 +121,26 @@ header {
     input:focus + .clear-button {
       opacity: 1;
     }
-    
+    @media screen and (min-width: 700px) {
+      input {
+        font-size: 1.2em;
+      }
+    }
     .clear-button {
       opacity: 0;
       position: absolute;
       right: 0.6em;
-      top: .7em;
+      top: 0.7em;
       color: white;
       background-color: transparent;
       border: none;
       cursor: pointer;
     }
-    
-    .zero {
+
+    .no-border {
       border: 1px solid transparent;
     }
-    .full {
+    .border {
       border: 1px solid white;
     }
   }
@@ -175,31 +188,39 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    >div:first-child{margin-right: .8em;}
-    img{width:4.5em}
+    > div:first-child {
+      margin-right: 0.8em;
+    }
+    img {
+      width: 4.5em;
+    }
     h1 {
       font-size: 3em;
       font-weight: 400;
       letter-spacing: normal;
     }
   }
-  >div:nth-child(2){
+  > div:nth-child(2) {
     font-size: 1.1em;
   }
-  >div:last-child{
+  > div:last-child {
     letter-spacing: 1px;
   }
 }
 @media screen and (min-width: 700px) {
-  .current >div:not(:first-child) {
-    margin-bottom: 16px;
+  .current > div:not(:first-child) {
+    margin-bottom: 20px;
   }
-  
 }
 /* end of Current */
 
 .data {
-  padding: 0.5em 1em 1em;
+  padding: 0.5em 1em;
+}
+@media screen and (min-width: 500px) {
+  .data {
+    padding: 0.5em 4vw;
+  }
 }
 
 /* hourly */
@@ -210,7 +231,11 @@ h2 {
   opacity: 0.8;
   margin-bottom: 0.5em;
 }
-
+@media screen and (min-width: 700px) {
+  h2 {
+    font-size: 1.3em;
+  }
+}
 .scroll-container {
   display: flex;
   gap: 0.5em;
@@ -231,9 +256,13 @@ h2 {
   }
 }
 .hourly-container {
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 }
-
+@media screen and (min-width: 700px) {
+  .hourly-container {
+    margin: 1em 0;
+  }
+}
 .hourly {
   text-align: center;
   display: flex;
@@ -248,7 +277,7 @@ h2 {
     padding: 0.6em 0.4em;
     border-radius: 10px;
     background-color: white;
-    margin: 0 .25em;
+    margin: 0 0.25em;
     > div:nth-child(2) {
       position: relative;
       top: -0.4em;
@@ -261,10 +290,10 @@ h2 {
       font-weight: 600;
     }
   }
-  >div:first-child{
+  > div:first-child {
     margin-left: 0;
   }
-  >div:last-child{
+  > div:last-child {
     margin-right: 0;
   }
 }
@@ -293,7 +322,7 @@ h2 {
 .daily {
   > div {
     display: flex;
-    padding:.9em .9em .9em 0;
+    padding: 0.9em 0.9em 0.9em 0;
     margin-bottom: 0.65em;
     justify-content: space-between;
     border-radius: 10px;
@@ -343,7 +372,7 @@ h2 {
 }
 @media screen and (min-width: 700px) {
   .daily > div {
-    margin-bottom: .85em;
+    margin-bottom: 0.85em;
     padding: 1em 1em 1em 0;
   }
 }
