@@ -4,7 +4,7 @@
 
 ## React Component Tree
 
-![screenshot](src\img\weather-components.png)
+![tree](src\img\weather-components.png)
 
 ## how does it work?
 
