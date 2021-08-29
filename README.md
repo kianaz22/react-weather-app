@@ -1,10 +1,10 @@
 # React Weather Website
 
-![screenshot](src\img\Screenshot.png)
+![screenshot](src/img/Screenshot.png)
 
 ## React Component Tree
 
-![tree](src\img\weather-components.png)
+![tree](src/img/weather-components.png)
 
 ## how does it work?
 
