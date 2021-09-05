@@ -1,7 +1,10 @@
+import { Circle, Default, Grid, Heart } from 'react-spinners-css';
 import Search from './components/Search'
-import Data from './components/Data'
 import Current from './components/Current'
-import { useState,useEffect } from 'react'
+import Hourly from './components/Hourly'
+import Daily from './components/Daily'
+import Conditions from './components/Conditions'
+import { useState, useEffect } from 'react'
 
 function App() {
   const [city, setCity] = useState('')
@@ -67,11 +70,11 @@ function App() {
         }
       })
         .then(res => res.json())
-        .then(response => {
-          setMatches(response)
+        .then(res => {
+          setMatches(res)
         })
     }
-    else { setMatches([]) }
+    else setMatches([]) 
     setCity(text)
   }
   const handleClick = (e) => {
@@ -88,10 +91,10 @@ function App() {
       setMatches([])
     }, 200);
   }
-  
+
   if (data)
     return (
-      <div className='app' onClick={(e)=>console.log(e)}>
+      <div className='app'>
         <div className='background'>
           <header>
             <Search data={data} city={city} matches={matches} handleBlur={handleBlur}
@@ -103,11 +106,21 @@ function App() {
           </header>
           <Current data={data} tempUnit={tempUnit} />
         </div>
-        <Data data={data} tempUnit={tempUnit} />
+
+        <div className='data'>
+          <Hourly data={data} tempUnit={tempUnit} />
+          <div className='flex-wrapper'>
+            <Daily data={data} tempUnit={tempUnit} />
+            <Conditions data={data} tempUnit={tempUnit} />
+          </div>
+        </div>
+
       </div>
     );
   else
-    return <div>loading...</div>
+    return <div style={{ height:'100vh', display:'flex',justifyContent:'center',alignItems:'center' }}>
+    <Default size={100} />
+    </div>
 }
 
 export default App;

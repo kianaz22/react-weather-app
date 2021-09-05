@@ -2,10 +2,6 @@
 
 ![screenshot](src/img/Screenshot.png)
 
-## React Component Tree
-
-![tree](src/img/weather-components.png)
-
 ## how does it work?
 
 - ### React states :
@@ -27,3 +23,4 @@ city, data, matches, tempUnit
      solution: moment.js library
    - displaying Air Quality index on a donut chart   
     solution: chart.js library
+  - handling errors from the air quality API

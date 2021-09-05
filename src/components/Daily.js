@@ -17,19 +17,19 @@ const Daily = ({ data, tempUnit }) => {
             <div className='daily'>
                 {next.map((n, i) =>
 
-                    <div key={i}>
-                        <div className='left'>
+                    <div className='day' key={i}>
+                        <div className='icon'>
                             <img alt='condition' src={n.day.condition.icon} />
                         </div>
-                        <div>
-                            <div >{date.clone().add(i + 1, 'd').format('dddd')}</div>
+                        <div className='date-and-condition'>
+                            <div className='date'>{date.clone().add(i + 1, 'd').format('dddd')}</div>
                             <div className='condition'>{n.day.condition.text}</div>
                         </div>
-                        <div style={{ visibility: n.day['daily_chance_of_rain'] > 0 ? 'visible' : 'hidden' }}>
+                        <div className='rain' style={{ visibility: n.day['daily_chance_of_rain'] > 0 ? 'visible' : 'hidden' }}>
                             <FaTint className='rain' />{n.day['daily_chance_of_rain']}%
                         </div>
-                        <div>
-                            <span className='transparent'>{Math.round(n.day[`mintemp_${tempUnit}`])}°</span>&nbsp;
+                        <div className='min-max'>
+                            <span>{Math.round(n.day[`mintemp_${tempUnit}`])}°</span>&nbsp;
                             {Math.round(n.day[`maxtemp_${tempUnit}`])}°
                         </div>
                     </div>

@@ -1,18 +1,37 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Condition from './Condition'
-import { FaWind, FaSun } from 'react-icons/fa'
-import { WiHumidity,WiRainMix } from 'react-icons/wi'
-import { FiSunrise, FiSunset } from 'react-icons/fi'
 import AirQuality from './AirQuality'
+import { FaWind, FaSun } from 'react-icons/fa'
+import { WiHumidity, WiRainMix } from 'react-icons/wi'
+import { FiSunrise, FiSunset } from 'react-icons/fi'
 
 const Conditions = ({ data }) => {
+
+    const qualityFallback = { aqi: '-', iaqi: { co: { v: '-' }, o3: { v: '-' }, no2: { v: '-' }, pm10: { v: '-' }, pm25: { v: '-' } } }
     const today = data.forecast.forecastday[0]
-    const [city, setCity] = useState('Tehran, Iran')
+    
+    const [quality, setQuality] = useState(qualityFallback)
 
     useEffect(() => {
-        setCity(data.location.name)
+        fetch(`https://api.waqi.info/feed/${data.location.name}/?token=59279c91ec4c2ff95a7957e57269b2540e194f9a`)
+            .then(res => res.json())
+            .then(res => {
+                if(typeof(res.data) === 'object') {
+                    setQuality(res.data)
+                }
+                else {
+                    fetch(`https://api.waqi.info/feed/${data.location.region}/?token=59279c91ec4c2ff95a7957e57269b2540e194f9a`)
+                    .then(res => res.json())
+                    .then(res => {
+                        if(typeof(res.data) === 'object') {
+                            setQuality(res.data)
+                        }
+                        else setQuality(qualityFallback)
+                    })
+                }
+            })
     }, [data])
-    
+
     return (
         <div className='conditions-container'>
             <h2>Conditions</h2>
@@ -44,16 +63,16 @@ const Conditions = ({ data }) => {
                 />
                 <Condition
                     icon={<FiSunrise size={30} color='#E68319' />}
-                    data={today.astro.sunrise.slice(0,5)}
+                    data={today.astro.sunrise.slice(0, 5)}
                     text='Sunrise'
                 />
                 <Condition
                     icon={<FiSunset size={30} color='#F2A807' />}
-                    data={today.astro.sunset.slice(0,5)}
+                    data={today.astro.sunset.slice(0, 5)}
                     text='Sunset'
                 />
-                
-                {<AirQuality city={city} />}
+
+                <AirQuality quality={quality} />
             </div>
         </div>
     )

@@ -1,7 +1,8 @@
 import moment from 'moment'
-import React from 'react'
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa'
+
 const Hourly = ({ data, tempUnit }) => {
+
     const hours = data.forecast.forecastday[0]['hour']
     const hours2 = data.forecast.forecastday[1]['hour']
 
@@ -27,16 +28,16 @@ const Hourly = ({ data, tempUnit }) => {
                 <button onClick={scrollLeft}><FaChevronLeft /></button>
                 <div className='hourly'>
                     {hours.map((hr, i) =>
-                        <div key={i}>
+                        <div className='hour' key={i}>
                             <div><img alt='condition' src={hr.condition.icon} /></div>
-                            <div>{Math.round(hr[`temp_${tempUnit}`])}°</div>
-                            <div>{i == now ? 'Now' : (i === 12 ? '12PM' : (i < 12 ? i + 'AM' : (i - 12) + 'PM'))}</div>
+                            <div className='temp'>{Math.round(hr[`temp_${tempUnit}`])}°</div>
+                            <div className='time'>{i === now ? 'Now' : (i === 12 ? '12PM' : (i < 12 ? i + 'AM' : (i - 12) + 'PM'))}</div>
                         </div>).filter((hr, i) => i >= now)}
                     {hours2.map((hr, i) =>
-                        <div key={i}>
+                        <div className='hour' key={i}>
                             <div><img alt='condition' src={hr.condition.icon} /></div>
-                            <div>{Math.round(hr[`temp_${tempUnit}`])}°</div>
-                            <div>{i === 12 ? '12PM' : (i === 0 ? '12AM' : (i < 12 ? i + 'AM' : (i - 12) + 'PM'))}</div>
+                            <div className='temp'>{Math.round(hr[`temp_${tempUnit}`])}°</div>
+                            <div className='time'>{i === 12 ? '12PM' : (i === 0 ? '12AM' : (i < 12 ? i + 'AM' : (i - 12) + 'PM'))}</div>
                         </div>).filter((hr, i) => i < now)}
                 </div>
                 <button onClick={scrollRight}><FaChevronRight /></button>
