@@ -3,73 +3,46 @@ import Particle from './Particle'
 
 const AirQuality = ({ quality }) => {
 
-  const index = quality.aqi ? quality.aqi : '-'
-  const pm25 = quality.iaqi.pm25 ? quality.iaqi.pm25.v : '-' 
-  const pm10 = quality.iaqi.pm10 ? quality.iaqi.pm10.v : '-' 
-  const co = quality.iaqi.co ? quality.iaqi.co.v : '-' 
-  const no2 = quality.iaqi.no2 ? quality.iaqi.no2.v : '-' 
-  const o3 = quality.iaqi.o3 ? quality.iaqi.o3.v : '-' 
+  const index = quality.aqi || '-'
+  const colors = {
+    green: '#1cb422', yellow: 'rgb(254,254,0)', orange: 'rgb(255,126,0)',
+    red: 'rgb(255,21,21)', magenta: 'rgb(176,58,117)', grey: 'rgba(0,0,0,.4)', lightGrey: '#f3f3f3'
+  }
+  const array = ['pm25', 'pm10', 'co', 'no2', 'o3']
 
-  const getLabel = (aqi) => {
-    if (aqi < 51)
-      return ['Good', 'Air quality is satisfactory, and air pollution poses little or no risk.'];
-    else if (aqi < 101)
-      return ["Moderate", "Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution."];
-    else if (aqi < 151)
-      return ["Unhealthy for sensitive groups", "Members of sensitive groups may experience health effects. The general public is less likely to be affected."];
-    else if (aqi < 201)
-      return ["Unhealthy", "Some members of the general public may experience health effects; members of sensitive groups may experience more serious health effects."];
-    else if (aqi < 301)
-      return ["Very Unhealthy", "Health alert: The risk of health effects is increased for everyone."];
-    else
-      return ["Air quality index for this city is not available right now", "Data not available"]
-  }
-  const getPm25Color = (pm25) => {
-    if (pm25 < 51)
-      return '#1cb422'
-    else if (pm25 < 101)
-      return 'rgb(254,254,0)'
-    else if (pm25 < 151)
-      return 'rgb(255,126,0)'
-    else if (pm25 < 201)
-      return 'rgb(255,21,21)'
-    else if (pm25 < 301)
-      return 'rgb(176,58,117)'
-    return 'rgba(0,0,0,.4)'
-  }
-  const getPm10Color = (pm10) => {
-    if (pm10 < 40)
-      return '#1cb422'
-    else if (pm10 < 80)
-      return 'rgb(254,254,0)'
-    else if (pm10 < 120)
-      return 'rgb(255,126,0)'
-    else if (pm10 < 300)
-      return 'rgb(255,21,21)'
-    else if (pm10 > 300)
-      return 'rgb(176,58,117)'
-    return 'rgba(0,0,0,.4)'
-  }
-  const getCoColor = (co) => {
-    if (co < 9)
-      return '#1cb422'
-    else if (co < 10)
-      return 'rgb(254,254,0)'
-    else if (co >= 10)
-      return 'rgb(176,58,117)'
-    return 'rgba(0,0,0,.4)'
-  }
+  const particles = array.reduce((obj, particle) => (
+    { ...obj, [particle]: quality.iaqi?.[particle] ? quality.iaqi[particle].v : '-' }), {})
+
+  const getLabel = (aqi) =>
+    (aqi < 51 && ['Good', 'Air quality is satisfactory, and air pollution poses little or no risk.']) ||
+    (aqi < 101 && ["Moderate", "Air quality is acceptable, there may be a risk for  those who are sensitive to air pollution."]) ||
+    (aqi < 151 && ["Unhealthy for sensitive groups", "Members of sensitive groups may experience health effects."]) ||
+    (aqi < 201 && ["Unhealthy for sensitive groups", "Members of sensitive groups may experience health effects."]) ||
+    (aqi < 301 && ["Very Unhealthy", "Health alert: The risk of health effects is increased for everyone."]) ||
+    ["Air quality index for this city is not available right now", "Data not available"]
+
+  const getPm25Color = (pm25) =>
+    (pm25 < 51 && colors.green) || (pm25 < 101 && colors.yellow) || (pm25 < 151 && colors.orange) ||
+    (pm25 < 201 && colors.red) || (pm25 < 301 && colors.magenta) || colors.grey
+
+  const getPm10Color = (pm10) =>
+    (pm10 < 40 && colors.green) || (pm10 < 80 && colors.yellow) || (pm10 < 120 && colors.orange) ||
+    (pm10 < 300 && colors.red) || (pm10 >= 300 && colors.magenta) || colors.grey
+
+  const getCoColor = (co) =>
+    (co < 9 && colors.green) || (co < 10 && colors.yellow) || (co >= 10 && colors.orange) || colors.grey
+
   const chartData = {
     datasets: [
       {
         data: [1, 1, 1, 1, 1, 1],
         backgroundColor: [
           'white',
-          getLabel(index)[0] === 'Good' ? '#1cb422' : '#f3f3f3',
-          getLabel(index)[0] === 'Moderate' ? 'rgb(254,254,0)' : '#f3f3f3',
-          getLabel(index)[0] === 'Unhealthy for sensitive groups' ? 'rgb(255,126,0)' : '#f3f3f3',
-          getLabel(index)[0] === 'Unhealthy' ? 'rgb(255,21,21)' : '#f3f3f3',
-          getLabel(index)[0] === 'Very Unhealthy' ? 'rgb(176,58,117)' : '#f3f3f3',
+          getLabel(index)[0] === 'Good' ? colors.green : colors.lightGrey,
+          getLabel(index)[0] === 'Moderate' ? colors.yellow : colors.lightGrey,
+          getLabel(index)[0] === 'Unhealthy for sensitive groups' ? colors.orange : colors.lightGrey,
+          getLabel(index)[0] === 'Unhealthy' ? colors.red : colors.lightGrey,
+          getLabel(index)[0] === 'Very Unhealthy' ? colors.magenta : colors.lightGrey
         ],
         borderWidth: 0,
         rotation: 150,
@@ -105,11 +78,11 @@ const AirQuality = ({ quality }) => {
         </div>
 
         <div className='particles'>
-          <Particle Particle='pm25' value={pm25} color={getPm25Color(pm25)} />
-          <Particle Particle='pm10' value={pm10} color={getPm10Color(pm10)} />
-          <Particle Particle='no2' value={no2} color={getPm25Color(no2)} />
-          <Particle Particle='O3' value={o3} color={getPm25Color(o3)} />
-          <Particle Particle='CO' value={co} color={getCoColor(co)} />
+          <Particle Particle='pm25' value={particles['pm25']} color={getPm25Color(particles['pm25'])} />
+          <Particle Particle='pm10' value={particles['pm10']} color={getPm10Color(particles['pm10'])} />
+          <Particle Particle='no2' value={particles['no2']} color={getPm25Color(particles['no2'])} />
+          <Particle Particle='O3' value={particles['o3']} color={getPm25Color(particles['o3'])} />
+          <Particle Particle='CO' value={particles['co']} color={getCoColor(particles['co'])} />
         </div>
 
       </div>

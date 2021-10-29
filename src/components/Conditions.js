@@ -7,29 +7,20 @@ import { FiSunrise, FiSunset } from 'react-icons/fi'
 
 const Conditions = ({ data }) => {
 
-    const qualityFallback = { aqi: '-', iaqi: { co: { v: '-' }, o3: { v: '-' }, no2: { v: '-' }, pm10: { v: '-' }, pm25: { v: '-' } } }
     const today = data.forecast.forecastday[0]
-    
-    const [quality, setQuality] = useState(qualityFallback)
+
+    const [quality, setQuality] = useState('')
 
     useEffect(() => {
-        fetch(`https://api.waqi.info/feed/${data.location.name}/?token=59279c91ec4c2ff95a7957e57269b2540e194f9a`)
-            .then(res => res.json())
-            .then(res => {
-                if(typeof(res.data) === 'object') {
-                    setQuality(res.data)
-                }
-                else {
-                    fetch(`https://api.waqi.info/feed/${data.location.region}/?token=59279c91ec4c2ff95a7957e57269b2540e194f9a`)
-                    .then(res => res.json())
-                    .then(res => {
-                        if(typeof(res.data) === 'object') {
-                            setQuality(res.data)
-                        }
-                        else setQuality(qualityFallback)
-                    })
-                }
-            })
+        async function fetchData() {
+            const response1 = await fetch(`https://api.waqi.info/feed/${data.location.name}/?token=59279c91ec4c2ff95a7957e57269b2540e194f9a`)
+            .then(res=>res.json())
+            const response2 = await fetch(`https://api.waqi.info/feed/${data.location.region}/?token=59279c91ec4c2ff95a7957e57269b2540e194f9a`)
+            .then(res=>res.json())
+            setQuality((response1.status === 'ok' && response1.data) || 
+            (response2.status === 'ok' && response2.data))
+        }
+        fetchData()
     }, [data])
 
     return (

@@ -1,4 +1,4 @@
-import { Circle, Default, Grid, Heart } from 'react-spinners-css';
+import { Default } from 'react-spinners-css';
 import Search from './components/Search'
 import Current from './components/Current'
 import Hourly from './components/Hourly'
