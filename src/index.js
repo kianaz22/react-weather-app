@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,5 +12,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+serviceWorkerRegistration.register();
 
 reportWebVitals();
