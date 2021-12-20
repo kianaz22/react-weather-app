@@ -4,15 +4,19 @@ import Current from './components/Current'
 import Hourly from './components/Hourly'
 import Daily from './components/Daily'
 import Conditions from './components/Conditions'
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useContext } from 'react'
+import { GlobalContext } from "./context/GlobalState.js";
 
 function App() {
-  const [city, setCity] = useState('')
+  const { tempUnit,setTempUnit,setCity,city } = useContext(GlobalContext);
+
+  // const [city, setCity] = useState('')
   const [data, setData] = useState('')
   const [matches, setMatches] = useState([])
-  const [tempUnit, setTempUnit] = useState('c')
+  // const [tempUnit, setTempUnit] = useState('c')
 
   useEffect(() => {
+
     const noPosition = () => {
       fetchData('tehran')
     }
@@ -97,21 +101,21 @@ function App() {
       <div className='app'>
         <div className='background'>
           <header>
-            <Search data={data} city={city} matches={matches} handleBlur={handleBlur}
+            <Search data={data} matches={matches} handleBlur={handleBlur}
               handleChange={handleChange} handleClick={handleClick} />
             <div className='temp-unit'>
               <button className={tempUnit === 'f' ? 'active' : ''} onClick={() => setTempUnit('f')}>F</button>
               <button className={tempUnit === 'c' ? 'active' : ''} onClick={() => setTempUnit('c')}>C</button>
             </div>
           </header>
-          <Current data={data} tempUnit={tempUnit} />
+          <Current data={data} />
         </div>
 
         <div className='data'>
-          <Hourly data={data} tempUnit={tempUnit} />
+          <Hourly data={data} />
           <div className='flex-wrapper'>
-            <Daily data={data} tempUnit={tempUnit} />
-            <Conditions data={data} tempUnit={tempUnit} />
+            <Daily data={data} />
+            <Conditions data={data} />
           </div>
         </div>
 

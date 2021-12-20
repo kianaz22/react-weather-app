@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaSearch,FaTimes } from 'react-icons/fa'
-const Search = ({ city,handleChange,matches,handleClick,handleBlur,data }) => {
+import { GlobalContext } from '../context/GlobalState'
+
+const Search = ({ handleChange,matches,handleClick,handleBlur,data }) => {
     const [clas, setClas] = useState('no-border')
-   
+    const { city } = useContext(GlobalContext)
     return (
         <div className='search-container' >
             <button className='search-button' onClick={() => {clas==='border' ? setClas('no-border') : setClas('border')}} >

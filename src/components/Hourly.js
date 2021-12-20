@@ -1,7 +1,10 @@
 import moment from 'moment'
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa'
+import { useContext } from 'react'
+import { GlobalContext } from "../context/GlobalState.js";
 
-const Hourly = ({ data, tempUnit }) => {
+const Hourly = ({ data }) => {
+    const { tempUnit } = useContext(GlobalContext)
 
     const hours = data.forecast.forecastday[0]['hour']
     const hours2 = data.forecast.forecastday[1]['hour']
