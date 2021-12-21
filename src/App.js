@@ -6,9 +6,10 @@ import Daily from "./components/Daily";
 import Conditions from "./components/Conditions";
 import { useEffect, useContext } from "react";
 import { GlobalContext } from "./context/GlobalState.js";
+import TempUnit from "./components/TempUnit";
 
 function App() {
-  const { tempUnit, setTempUnit, data, setData, city, setCity } =
+  const { data, setData, city, setCity } =
     useContext(GlobalContext);
 
   useEffect(() => {
@@ -80,20 +81,7 @@ function App() {
         <div className="background">
           <header>
             <Search fetchData={fetchData} />
-            <div className="temp-unit">
-              <button
-                className={tempUnit === "f" ? "active" : ""}
-                onClick={() => setTempUnit("f")}
-              >
-                F
-              </button>
-              <button
-                className={tempUnit === "c" ? "active" : ""}
-                onClick={() => setTempUnit("c")}
-              >
-                C
-              </button>
-            </div>
+            <TempUnit />
           </header>
 
           <Current />
