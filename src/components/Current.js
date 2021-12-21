@@ -3,8 +3,8 @@ import { FaCaretDown, FaCaretUp } from 'react-icons/fa'
 import moment from 'moment'
 import { GlobalContext } from "../context/GlobalState.js";
 
-const Current = ({ data }) => {
-    const { tempUnit } = useContext(GlobalContext)
+const Current = () => {
+    const { tempUnit,data } = useContext(GlobalContext)
 
     const today = data.forecast.forecastday[0]
     const m = moment(data.location.localtime, 'YYYY-MM-DD HH:mm').format('dddd, MMM DD, YYYY')

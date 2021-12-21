@@ -1,10 +1,10 @@
 import moment from 'moment'
-import React,{ useContext} from 'react'
+import React,{ useContext } from 'react'
 import { FaTint } from 'react-icons/fa'
 import { GlobalContext } from "../context/GlobalState.js";
 
-const Daily = ({ data }) => {
-    const { tempUnit } = useContext(GlobalContext)
+const Daily = () => {
+    const { tempUnit, data } = useContext(GlobalContext)
 
     const next = data.forecast.forecastday.slice(1)
     next.push(data.forecast.forecastday[1])

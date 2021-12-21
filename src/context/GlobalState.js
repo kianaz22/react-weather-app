@@ -30,10 +30,10 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
-  function addTask(task) {
+  function setData(data) {
     dispatch({
-      type: "ADD_TASK",
-      payload: task,
+      type: "SET_DATA",
+      payload: data,
     });
   }
 
@@ -49,8 +49,9 @@ export const GlobalProvider = ({ children }) => {
       value={{
         tempUnit: state.tempUnit,
         city:state.city,
+        data:state.data,
         setCity,
-        addTask,
+        setData,
         changeStatus,
         setTempUnit,
       }}

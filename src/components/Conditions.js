@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Condition from './Condition'
 import AirQuality from './AirQuality'
 import { FaWind, FaSun } from 'react-icons/fa'
 import { WiHumidity, WiRainMix } from 'react-icons/wi'
 import { FiSunrise, FiSunset } from 'react-icons/fi'
+import { GlobalContext } from '../context/GlobalState'
 
-const Conditions = ({ data }) => {
+const Conditions = () => {
+    const { data } = useContext(GlobalContext);
 
     const today = data.forecast.forecastday[0]
 

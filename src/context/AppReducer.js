@@ -10,10 +10,10 @@ const AppReducer = (state, action) => {
         ...state,
         city: action.payload,
       };
-    case "ADD_TASK":
+    case "SET_DATA":
       return {
         ...state,
-        tasks: [...state.tasks, action.payload],
+        data: action.payload,
       };
     case "CHANGE_STATUS":
       return {

@@ -8,10 +8,10 @@ import { useState, useEffect,useContext } from 'react'
 import { GlobalContext } from "./context/GlobalState.js";
 
 function App() {
-  const { tempUnit,setTempUnit,setCity,city } = useContext(GlobalContext);
+  const { tempUnit,setTempUnit,setCity,data,setData } = useContext(GlobalContext);
 
   // const [city, setCity] = useState('')
-  const [data, setData] = useState('')
+  // const [data, setData] = useState('')
   const [matches, setMatches] = useState([])
   // const [tempUnit, setTempUnit] = useState('c')
 
@@ -101,21 +101,22 @@ function App() {
       <div className='app'>
         <div className='background'>
           <header>
-            <Search data={data} matches={matches} handleBlur={handleBlur}
+            <Search matches={matches} handleBlur={handleBlur}
               handleChange={handleChange} handleClick={handleClick} />
             <div className='temp-unit'>
               <button className={tempUnit === 'f' ? 'active' : ''} onClick={() => setTempUnit('f')}>F</button>
               <button className={tempUnit === 'c' ? 'active' : ''} onClick={() => setTempUnit('c')}>C</button>
             </div>
           </header>
-          <Current data={data} />
+
+          <Current />
         </div>
 
         <div className='data'>
-          <Hourly data={data} />
+          <Hourly />
           <div className='flex-wrapper'>
-            <Daily data={data} />
-            <Conditions data={data} />
+            <Daily />
+            <Conditions />
           </div>
         </div>
 
