@@ -7,32 +7,31 @@
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  background-color: #f3f3f3;
+  color: white;
+  background-color: #456DE5;
 }
 
 .app {
-  background-color: #f3f3f3;
+  margin: 1em ;
+  max-width: 900px;
   height: 100%;
 }
-
-/* background */
-
-.background {
-  padding: 1em;
-  color: white;
-  background-image: url("./img/smalllighter2.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
-  padding-bottom: 35px;
-}
-@media screen and (min-width: 700px) {
-  .background {
-    background-image: url("./img/big.jpg");
+@media screen and (min-width: 380px) {
+  .app {
+    margin: 1em 5vw;
   }
 }
+@media screen and (min-width: 950px) {
+  .app {
+    margin: 1em auto;
+    padding: 1em 2em;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+}
+
 @media screen and (min-width: 920px) {
-  .background {
+  .current, header {
     font-size: 1.1em;
   }
 }
@@ -73,8 +72,6 @@ header {
 }
 @media screen and (min-width: 700px) {
   header {
-    margin-right: 1.5em;
-    margin-left: 1.5em;
     .temp-unit {
       font-size: 1.4em;
     }
@@ -147,12 +144,15 @@ header {
   }
   ::-webkit-input-placeholder {
     color: white;
+    opacity: 1;
   }
   ::-moz-placeholder {
     color: white;
+    opacity: 1;
   }
   ::-ms-input-placeholder {
     color: white;
+    opacity: 1;
   }
   .matches-container {
     position: absolute;
@@ -179,6 +179,7 @@ header {
 /* current */
 
 .current {
+  margin-bottom: 1.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,7 +220,6 @@ header {
 /* end of background */
 
 .data {
-  padding: 0.5em 1em;
   h2 {
     text-align: left;
     font-size: 1.1em;
@@ -232,28 +232,27 @@ header {
     }
   }
 }
-@media screen and (min-width: 500px) {
-  .data {
-    padding: 0.5em 4vw;
-  }
-}
+
 
 /* hourly */
 
 .hourly-container {
   margin-bottom: 1em;
+  h2{
+    padding-left: 1em;
+  }
   .scroll-container {
     display: flex;
     gap: 0.5em;
     button {
+      color: white;
+      background-color: transparent;
       display: none;
       border: none;
-      margin-top: 0.7em;
-      opacity: 0.5;
     }
     button:hover {
-      background-color: #c0bcbc;
-      color: white;
+      opacity: 0.5;
+      cursor: pointer;
     }
   }
   @media (hover: hover) {
@@ -270,12 +269,13 @@ header {
     -ms-overflow-style: none;
     scrollbar-width: none;
     .hour {
+      color: black;
       padding: 0.6em 0.4em;
       border-radius: 10px;
       background-color: white;
       margin: 0 0.25em;
       img {
-        width: 3.5em;
+        width: 3em;
       }
       .temp {
         position: relative;
@@ -283,7 +283,7 @@ header {
         font-weight: 600;
       }
       .time {
-        font-size: 0.8em;
+        font-size: 0.7em;
         opacity: 0.6;
         font-weight: 600;
       }
@@ -306,7 +306,7 @@ header {
 }
 @media screen and (min-width: 700px) {
   .hourly-container {
-    margin: 1em 0;
+    margin: 1.5em -1.3em;
   }
 }
 
@@ -315,22 +315,24 @@ header {
 @media screen and(min-width:700px) {
   .flex-wrapper {
     display: flex;
+    padding-top: 1em ;
   }
 }
 
 /* daily */
 .daily-container {
-  margin: 1em 0;
+  margin-bottom: 1em;
   .daily {
     .day {
       display: flex;
-      padding: 0.9em 0.9em 0.9em 0;
-      margin-bottom: 0.65em;
+      padding: 1em 0.9em 1em 0;
+      margin-bottom: 1em;
       justify-content: space-between;
       border-radius: 10px;
       align-items: center;
       background-color: white;
       font-weight: 600;
+      color: black;
       .icon {
         width: 20%;
         text-align: center;
@@ -363,18 +365,13 @@ header {
         }
       }
     }
-    @media screen and (min-width: 700px) {
-      .day {
-        margin-bottom: 0.85em;
-        padding: 1em 1em 1em 0;
-      }
-    }
   }
 }
 @media screen and (min-width: 700px) {
   .daily-container {
     width: 50%;
     padding-right: 0.7em;
+    margin-bottom: 0;
   }
 }
 /* end of daily */
@@ -382,16 +379,16 @@ header {
 /*conditions */
 
 .conditions-container {
-  margin: 1em 0;
   .conditions {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     .condition {
+      color: black;
       display: flex;
       border-radius: 10px;
-      padding: 0.9em;
-      margin-bottom: 0.9em;
+      padding: 1em 0.9em;
+      margin-bottom: 1em;
       background-color: white;
       justify-content: left;
       align-items: center;
@@ -404,11 +401,6 @@ header {
           font-size: 0.75em;
           opacity: 0.7;
         }
-      }
-    }
-    @media screen and (min-width: 700px) {
-      .condition {
-        margin-bottom: 0.74em;
       }
     }
   }
@@ -428,7 +420,9 @@ header {
   width: 100%;
   .air-quality {
     border-radius: 10px;
-    padding: 0.8em;
+    padding: 0.5em 0.8em;
+    padding-bottom: 1em;
+    color: black;
     background-color: white;
     .quality-index {
       display: flex;
@@ -480,6 +474,11 @@ header {
         line-height: 2;
       }
     }
+  }
+}
+@media screen and (min-width: 700px) {
+  .air-quality-container {
+    margin-top: -.6em;
   }
 }
 /*end of Air quality */

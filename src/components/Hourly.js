@@ -26,7 +26,6 @@ const Hourly = () => {
     return (
 
         <div className='hourly-container'>
-            <h2>Hourly</h2>
             <div className='scroll-container'>
                 <button onClick={scrollLeft}><FaChevronLeft /></button>
                 <div className='hourly'>

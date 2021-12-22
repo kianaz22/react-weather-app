@@ -41,7 +41,7 @@ const Search = () => {
     <div className="search-container">
       <button
         className="search-button"
-        onClick={() => setBorder(border=> !border)}
+        onClick={() => setBorder(border => !border)}
       >
         <FaSearch className="icon" size={15} />
       </button>

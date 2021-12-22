@@ -78,14 +78,11 @@ function App() {
   if (data)
     return (
       <div className="app">
-        <div className="background">
           <header>
             <Search fetchData={fetchData} />
             <TempUnit />
           </header>
-
           <Current />
-        </div>
 
         <div className="data">
           <Hourly />
