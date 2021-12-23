@@ -7,7 +7,7 @@ const Current = () => {
     const { tempUnit,data } = useContext(GlobalContext)
 
     const today = data.forecast.forecastday[0]
-    const m = moment(data.location.localtime, 'YYYY-MM-DD HH:mm').format('dddd, MMM DD, YYYY')
+    const date = moment(data.location.localtime, 'YYYY-MM-DD HH:mm').format('dddd, MMM DD, YYYY')
 
     return (
         <div className='current'>
@@ -21,7 +21,7 @@ const Current = () => {
                 </div>
             </div>
             <div className='condition'>{data.current.condition.text}</div>
-            <div className='date'>{m}</div>
+            <div className='date'>{date}</div>
             <div className='min-max'>
                 <span><FaCaretUp /> {Math.round(today.day[`maxtemp_${tempUnit}`])}°</span>&nbsp;&nbsp;&nbsp;
                 <span><FaCaretDown /> {Math.round(today.day[`mintemp_${tempUnit}`])}°</span>
