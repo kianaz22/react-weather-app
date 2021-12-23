@@ -3,14 +3,42 @@
   padding: 0;
   box-sizing: border-box;
 }
+$bg : rgba(255, 255, 255, 0.8);
 
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   color: white;
-  background-color: #456DE5;
+  position: relative;
 }
-
+.bg-img{
+  position: fixed;
+  z-index: -1;
+  margin-top: -1em;
+  width: 100%;
+  height: 100%;
+  opacity: .9;
+  
+}
+@media screen and (min-width: 416px) {
+  body{
+    background-image: url("./img/darkblue.png");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .bg-img{
+    display: none;
+  }
+}
+@media screen and (min-width: 950px) {
+  body{
+    background-image: url("./img/darkblue.png");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
 .app {
   margin: 1em ;
   max-width: 900px;
@@ -24,9 +52,6 @@ body {
 @media screen and (min-width: 950px) {
   .app {
     margin: 1em auto;
-    padding: 1em 2em;
-    border: 1px solid white;
-    border-radius: 10px;
   }
 }
 
@@ -272,7 +297,7 @@ header {
       color: black;
       padding: 0.6em 0.4em;
       border-radius: 10px;
-      background-color: white;
+      background:$bg;
       margin: 0 0.25em;
       img {
         width: 3em;
@@ -330,7 +355,7 @@ header {
       justify-content: space-between;
       border-radius: 10px;
       align-items: center;
-      background-color: white;
+      background:$bg;
       font-weight: 600;
       color: black;
       .icon {
@@ -389,7 +414,7 @@ header {
       border-radius: 10px;
       padding: 1em 0.9em;
       margin-bottom: 1em;
-      background-color: white;
+      background:$bg;
       justify-content: left;
       align-items: center;
       width: 47%;
@@ -423,7 +448,7 @@ header {
     padding: 0.5em 0.8em;
     padding-bottom: 1em;
     color: black;
-    background-color: white;
+    background:$bg;
     .quality-index {
       display: flex;
       align-items: center;
