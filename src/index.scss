@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-$bg : rgba(255, 255, 255, 0.8);
+$bg: rgba(255, 255, 255, 0.8);
 
 body {
   font-family: "Open Sans", sans-serif;
@@ -11,36 +11,16 @@ body {
   color: white;
   position: relative;
 }
-.bg-img{
+.bg-img {
   position: fixed;
   z-index: -1;
   margin-top: -1em;
   width: 100%;
   height: 100%;
-  opacity: .9;
-  
-}
-@media screen and (min-width: 416px) {
-  body{
-    background-image: url("./img/darkblue.png");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .bg-img{
-    display: none;
-  }
-}
-@media screen and (min-width: 950px) {
-  body{
-    background-image: url("./img/darkblue.png");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  opacity: 0.9;
 }
 .app {
-  margin: 1em ;
+  margin: 1em;
   max-width: 900px;
   height: 100%;
 }
@@ -56,7 +36,8 @@ body {
 }
 
 @media screen and (min-width: 920px) {
-  .current, header {
+  .current,
+  header {
     font-size: 1.1em;
   }
 }
@@ -248,7 +229,6 @@ header {
   h2 {
     text-align: left;
     font-size: 1.1em;
-    opacity: 0.8;
     margin-bottom: 0.5em;
   }
   @media screen and (min-width: 700px) {
@@ -258,12 +238,11 @@ header {
   }
 }
 
-
 /* hourly */
 
 .hourly-container {
   margin-bottom: 1em;
-  h2{
+  h2 {
     padding-left: 1em;
   }
   .scroll-container {
@@ -297,7 +276,7 @@ header {
       color: black;
       padding: 0.6em 0.4em;
       border-radius: 10px;
-      background:$bg;
+      background: $bg;
       margin: 0 0.25em;
       img {
         width: 3em;
@@ -340,7 +319,7 @@ header {
 @media screen and(min-width:700px) {
   .flex-wrapper {
     display: flex;
-    padding-top: 1em ;
+    padding-top: 1em;
   }
 }
 
@@ -355,7 +334,7 @@ header {
       justify-content: space-between;
       border-radius: 10px;
       align-items: center;
-      background:$bg;
+      background: $bg;
       font-weight: 600;
       color: black;
       .icon {
@@ -414,7 +393,7 @@ header {
       border-radius: 10px;
       padding: 1em 0.9em;
       margin-bottom: 1em;
-      background:$bg;
+      background: $bg;
       justify-content: left;
       align-items: center;
       width: 47%;
@@ -448,7 +427,7 @@ header {
     padding: 0.5em 0.8em;
     padding-bottom: 1em;
     color: black;
-    background:$bg;
+    background: $bg;
     .quality-index {
       display: flex;
       align-items: center;
@@ -503,7 +482,7 @@ header {
 }
 @media screen and (min-width: 700px) {
   .air-quality-container {
-    margin-top: -.6em;
+    margin-top: -0.6em;
   }
 }
 /*end of Air quality */

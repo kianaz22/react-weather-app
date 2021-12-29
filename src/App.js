@@ -7,10 +7,16 @@ import Conditions from "./components/Conditions";
 import { useEffect, useContext } from "react";
 import { GlobalContext } from "./context/GlobalState.js";
 import TempUnit from "./components/TempUnit";
+import Background from "./components/Background";
+const defaultStyle = {
+  height: "100vh",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
 
 function App() {
-  const { data, setData, city, setCity } =
-    useContext(GlobalContext);
+  const { data, setData, city, setCity } = useContext(GlobalContext);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -77,32 +83,27 @@ function App() {
 
   if (data)
     return (
-      <div className="app">
+      <>
+        <Background />
+        <div className="app">
           <header>
             <Search fetchData={fetchData} />
             <TempUnit />
           </header>
           <Current />
-
-        <div className="data">
-          <Hourly />
-          <div className="flex-wrapper">
-            <Daily />
-            <Conditions />
+          <div className="data">
+            <Hourly />
+            <div className="flex-wrapper">
+              <Daily />
+              <Conditions />
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   else
     return (
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div style={defaultStyle}>
         <Default size={100} />
       </div>
     );
